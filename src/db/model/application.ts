@@ -1,7 +1,7 @@
 import {Schema, model} from "mongoose";
 
 let ApplicationSchema = new Schema({
-    reciveDate: {
+    receiveDate: {
         type: Date,
         default: new Date()
     },
@@ -52,11 +52,7 @@ let ApplicationSchema = new Schema({
     status: {
         type: Schema.Types.ObjectId,
         ref: 'status'
-    },
-    payments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'payment'
-    }]
+    }
 });
 
 export default model('application', ApplicationSchema);

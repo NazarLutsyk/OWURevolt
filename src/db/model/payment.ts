@@ -9,6 +9,11 @@ let PaymentSchema = new Schema({
     date: {
         type: Date,
         default: new Date()
+    },
+    application:{
+        type:Schema.Types.ObjectId,
+        ref:"Application",
+        required: true
     }
 });
 

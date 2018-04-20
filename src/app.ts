@@ -3,9 +3,9 @@ import * as bodyParser from "body-parser";
 import * as cors from "cors";
 import * as helmet from "helmet";
 import * as morgan from "morgan";
-import * as rootSchema from "./graphql";
 import * as graphqlHTTP from "express-graphql";
-import {connect as dbConnect} from "./db";
+import rootSchema from "./api";
+import dbConnect from "./db";
 import config from "./config/global";
 
 class App {
@@ -27,7 +27,7 @@ class App {
     }
 
     private graphQlEnable() {
-        this.app.use(graphqlHTTP({
+        this.app.use("/", graphqlHTTP({
             schema: rootSchema,
             graphiql: true,
             pretty: true
