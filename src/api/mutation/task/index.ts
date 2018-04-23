@@ -1,28 +1,38 @@
-import {create, update, del} from "./resolve";
+import {createTask, updateTask, delTask} from "./resolve";
 import TaskType from "../../types/task";
 import TaskInputType from "../../types/task/input";
-import {GraphQLID} from "graphql";
+import TaskUpdateType from "../../types/task/update";
+import {GraphQLID, GraphQLNonNull} from "graphql";
 
 export default {
-    create: {
+    createTask: {
         type: TaskType,
         args: {
-            data: TaskInputType,
+            data: {
+                type: TaskInputType
+            },
         },
-        resolve: create
+        resolve: createTask
     },
-    update: {
+    updateTask: {
         type: TaskType,
         args: {
-            data: TaskInputType,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
+            data: {
+                type: TaskUpdateType
+            },
         },
-        resolve: update
+        resolve: updateTask
     },
-    delete: {
+    deleteTask: {
         type: TaskType,
         args: {
-            data: GraphQLID,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            }
         },
-        resolve: del
+        resolve: delTask
     }
 }

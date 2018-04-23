@@ -1,27 +1,37 @@
-import {create,update,del} from "./resolve";
+import {createApplication,updateApplication,delApplication} from "./resolve";
 import ApplicationType from "../../types/application";
 import ApplicationInputType from "../../types/application/input";
-import {GraphQLID} from "graphql";
+import ApplicationUpdateType from "../../types/application/update";
+import {GraphQLID, GraphQLNonNull} from "graphql";
 export default {
-    create: {
+    createApplication: {
         type: ApplicationType,
         args: {
-            data: ApplicationInputType,
+            data: {
+                type: ApplicationInputType
+            },
         },
-        resolve: create
+        resolve: createApplication
     },
-    update: {
+    updateApplication: {
         type: ApplicationType,
         args: {
-            data: ApplicationInputType,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
+            data: {
+                type: ApplicationUpdateType
+            },
         },
-        resolve: update
+        resolve: updateApplication
     },
-    delete: {
+    deleteApplication: {
         type: ApplicationType,
         args: {
-            id: GraphQLID,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
         },
-        resolve: del
+        resolve: delApplication
     }
 }

@@ -1,28 +1,38 @@
-import {create, update, del} from "./resolve";
+import {createSocial, updateSocial, delSocial} from "./resolve";
 import SocialType from "../../types/social";
 import SocialInputType from "../../types/social/input";
-import {GraphQLID} from "graphql";
+import SocialUpdateType from "../../types/social/update";
+import {GraphQLID, GraphQLNonNull} from "graphql";
 
 export default {
-    create: {
+    createSocial: {
         type: SocialType,
         args: {
-            data: SocialInputType,
+            data: {
+                type: SocialInputType
+            },
         },
-        resolve: create
+        resolve: createSocial
     },
-    update: {
+    updateSocial: {
         type: SocialType,
         args: {
-            data: SocialInputType,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
+            data: {
+                type: SocialUpdateType
+            },
         },
-        resolve: update
+        resolve: updateSocial
     },
-    delete: {
+    deleteSocial: {
         type: SocialType,
         args: {
-            data: GraphQLID,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
         },
-        resolve: del
+        resolve: delSocial
     }
 }

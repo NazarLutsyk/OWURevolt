@@ -1,27 +1,37 @@
-import {create,update,del} from "./resolve";
+import {createClient,updateClient,delClient} from "./resolve";
 import ClientType from "../../types/client";
 import ClientInputType from "../../types/client/input";
-import {GraphQLID} from "graphql";
+import ClientUpdateType from "../../types/client/update";
+import {GraphQLID, GraphQLNonNull} from "graphql";
 export default {
-    create: {
+    createClient: {
         type: ClientType,
         args: {
-            data: ClientInputType,
+            data: {
+                type: ClientInputType
+            },
         },
-        resolve: create
+        resolve: createClient
     },
-    update: {
+    updateClient: {
         type: ClientType,
         args: {
-            data: ClientInputType,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
+            data: {
+                type: ClientUpdateType
+            },
         },
-        resolve: update
+        resolve: updateClient
     },
-    delete: {
+    deleteClient: {
         type: ClientType,
         args: {
-            data: GraphQLID,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
         },
-        resolve: del
+        resolve: delClient
     }
 }

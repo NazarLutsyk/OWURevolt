@@ -7,7 +7,6 @@ import * as graphqlHTTP from "express-graphql";
 import rootSchema from "./api";
 import dbConnect from "./db";
 import config from "./config/global";
-
 class App {
     app: express.Application;
 

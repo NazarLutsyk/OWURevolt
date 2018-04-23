@@ -3,12 +3,11 @@
 @add graphql types
 @add types validation
 @create inputs
-#todo add relation to inputs
-#todo add input validation
-#todo add graphql queries
+@add relation to inputs
+@add input validation
+@add graphql queries
+@add graphql mutations(update)
 #todo add projection in queries
-#todo add graphql mutations
-#todo add graphql relations
 #todo authentication
 #todo authorization
 #todo computed values in app(paid,leftToPay)

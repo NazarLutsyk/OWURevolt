@@ -1,28 +1,25 @@
-import {create, update, del} from "./resolve";
+import {createPayment, delPayment} from "./resolve";
 import PaymentType from "../../types/payment";
 import PaymentInputType from "../../types/payment/input";
-import {GraphQLID} from "graphql";
+import {GraphQLID, GraphQLNonNull} from "graphql";
 
 export default {
-    create: {
+    createPayment: {
         type: PaymentType,
         args: {
-            data: PaymentInputType,
+            data: {
+                type: PaymentInputType
+            },
         },
-        resolve: create
+        resolve: createPayment
     },
-    update: {
+    deletePayment: {
         type: PaymentType,
         args: {
-            data: PaymentInputType,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
         },
-        resolve: update
-    },
-    delete: {
-        type: PaymentType,
-        args: {
-            data: GraphQLID,
-        },
-        resolve: del
+        resolve: delPayment
     }
 }

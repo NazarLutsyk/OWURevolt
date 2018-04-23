@@ -1,28 +1,38 @@
-import {create, update, del} from "./resolve";
+import {createStatus, updateStatus, delStatus} from "./resolve";
 import StatusType from "../../types/status";
 import StatusInputType from "../../types/status/input";
-import {GraphQLID} from "graphql";
+import StatusUpdateType from "../../types/status/update";
+import {GraphQLID, GraphQLNonNull} from "graphql";
 
 export default {
-    create: {
+    createStatus: {
         type: StatusType,
         args: {
-            data: StatusInputType,
+            data: {
+                type: StatusInputType
+            },
         },
-        resolve: create
+        resolve: createStatus
     },
-    update: {
+    updateStatus: {
         type: StatusType,
         args: {
-            data: StatusInputType,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
+            data: {
+                type: StatusUpdateType
+            },
         },
-        resolve: update
+        resolve: updateStatus
     },
-    delete: {
+    deleteStatus: {
         type: StatusType,
         args: {
-            data: GraphQLID,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
         },
-        resolve: del
+        resolve: delStatus
     }
 }

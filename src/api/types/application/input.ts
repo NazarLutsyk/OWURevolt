@@ -43,9 +43,6 @@ export default new GraphQLInputObjectType({
             leftToPay: {
                 type: GraphQLInt,
             },
-            date: {
-                type: GraphQLString
-            },
             client: {
                 type: new GraphQLNonNull(GraphQLID),
             },

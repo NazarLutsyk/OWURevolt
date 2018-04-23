@@ -1,28 +1,38 @@
-import {create, update, del} from "./resolve";
+import {createGroup, updateGroup, delGroup} from "./resolve";
 import GroupType from "../../types/group";
 import GroupInputType from "../../types/group/input";
-import {GraphQLID} from "graphql";
+import GroupUpdateType from "../../types/group/update";
+import {GraphQLID, GraphQLNonNull} from "graphql";
 
 export default {
-    create: {
+    createGroup: {
         type: GroupType,
         args: {
-            data: GroupInputType,
+            data: {
+                type: GroupInputType
+            },
         },
-        resolve: create
+        resolve: createGroup
     },
-    update: {
+    updateGroup: {
         type: GroupType,
         args: {
-            data: GroupInputType,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
+            data: {
+                type: GroupUpdateType
+            },
         },
-        resolve: update
+        resolve: updateGroup
     },
-    delete: {
+    deleteGroup: {
         type: GroupType,
         args: {
-            data: GraphQLID,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
         },
-        resolve: del
+        resolve: delGroup
     }
 }

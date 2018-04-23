@@ -1,7 +1,8 @@
-export async function create() {
-}
-export async function update() {
-}
+import PaymentModel from "../../../db/model/payment";
 
-export async function del() {
+export async function createPayment(root, {data}) {
+    return await PaymentModel.create(data);
+}
+export async function delPayment(root, {id}) {
+    return await PaymentModel.findByIdAndRemove(id)
 }

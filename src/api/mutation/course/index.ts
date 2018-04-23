@@ -1,28 +1,38 @@
-import {create, update, del} from "./resolve";
+import {createCourse, updateCourse, delCourse} from "./resolve";
 import CourseType from "../../types/course";
 import CourseInputType from "../../types/course/input";
-import {GraphQLID} from "graphql";
+import CourseUpdateType from "../../types/course/update";
+import {GraphQLID, GraphQLNonNull} from "graphql";
 
 export default {
-    create: {
+    createCourse: {
         type: CourseType,
         args: {
-            data: CourseInputType,
+            data: {
+                type: CourseInputType
+            },
         },
-        resolve: create
+        resolve: createCourse
     },
-    update: {
+    updateCourse: {
         type: CourseType,
         args: {
-            data: CourseInputType,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
+            data: {
+                type: CourseUpdateType
+            },
         },
-        resolve: update
+        resolve: updateCourse
     },
-    delete: {
+    deleteCourse: {
         type: CourseType,
         args: {
-            data: GraphQLID,
+            id: {
+                type: new GraphQLNonNull(GraphQLID)
+            },
         },
-        resolve: del
+        resolve: delCourse
     }
 }
