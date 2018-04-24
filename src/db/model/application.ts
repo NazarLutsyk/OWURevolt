@@ -1,4 +1,4 @@
-import {Schema, model} from "mongoose";
+import {Schema, model, Document} from "mongoose";
 
 let ApplicationSchema = new Schema({
     receiveDate: {
@@ -31,6 +31,7 @@ let ApplicationSchema = new Schema({
     },
     paid: {
         type: Number,
+        default: 0
     },
     leftToPay: {
         type: Number,
@@ -54,5 +55,14 @@ let ApplicationSchema = new Schema({
         ref: 'status'
     }
 });
+
+ApplicationSchema.statics.supersave = async function (doc) {
+    let CourseModel = require("./course").default;
+    let course = await CourseModel.findById(doc.course);
+
+    doc.discount = doc.discount ? doc.discount : 0;
+    doc.leftToPay = course.price - (course.price * (doc.discount / 100));
+    return this.create(doc);
+};
 
 export default model('application', ApplicationSchema);

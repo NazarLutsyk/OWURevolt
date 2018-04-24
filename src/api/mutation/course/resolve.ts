@@ -1,13 +1,17 @@
 import CourseModel from "../../../db/model/course";
+import * as winston from "winston";
 
-export async function createCourse(root, {data}) {
+export async function createCourse(root, {data},context) {
+    winston.info(`Create Course`,{admin: context.user.toJSON(), model: data});
     return await CourseModel.create(data);
 }
 
-export async function updateCourse(root, {data, id}) {
+export async function updateCourse(root, {data, id},context) {
+    winston.info(`Update Course`,{admin: context.user.toJSON(), id: id, data: data});
     return await CourseModel.findByIdAndUpdate(id, data, {new: true});
 }
 
-export async function delCourse(root, {id}) {
+export async function delCourse(root, {id},context) {
+    winston.info(`Remove Course`,{admin: context.user.toJSON(), id: id});
     return await CourseModel.findByIdAndRemove(id);
 }

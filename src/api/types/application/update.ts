@@ -3,9 +3,6 @@ import {GraphQLBoolean, GraphQLID, GraphQLInputObjectType, GraphQLInt, GraphQLSt
 export default new GraphQLInputObjectType({
     name: "ApplicationUpdate",
     fields: {
-        receiveDate: {
-            type: GraphQLString,
-        },
         closeDate: {
             type: GraphQLString,
         },

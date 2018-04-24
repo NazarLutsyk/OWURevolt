@@ -7,11 +7,11 @@
 @add input validation
 @add graphql queries
 @add graphql mutations(update)
-#todo add projection in queries
-#todo authentication
-#todo authorization
-#todo computed values in app(paid,leftToPay)
-#todo add validation to date fields(task(dateExec)) to check they are not smaller current date
-#todo add validation to payment(amount) tho check amount not bigger than course price
+@add query,sort,pagination
+@computed values in app(paid,leftToPay)
+@add validation to payment(amount) tho check amount not bigger than course price
+@authentication
+@add users script
+@add logs
+#todo analitics
 #todo add clusters
-#todo add logs

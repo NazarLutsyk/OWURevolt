@@ -13,9 +13,6 @@ export default new GraphQLInputObjectType({
     name: "ApplicationInput",
     fields: function () {
         return {
-            receiveDate: {
-                type: GraphQLString,
-            },
             closeDate: {
                 type: GraphQLString,
             },
@@ -31,16 +28,7 @@ export default new GraphQLInputObjectType({
             futureCourse: {
                 type: GraphQLString,
             },
-            checked: {
-                type: GraphQLBoolean,
-            },
             discount: {
-                type: GraphQLInt,
-            },
-            paid: {
-                type: GraphQLInt,
-            },
-            leftToPay: {
                 type: GraphQLInt,
             },
             client: {

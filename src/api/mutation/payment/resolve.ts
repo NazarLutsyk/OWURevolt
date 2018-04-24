@@ -1,8 +1,7 @@
 import PaymentModel from "../../../db/model/payment";
+import * as winston from "winston";
 
-export async function createPayment(root, {data}) {
-    return await PaymentModel.create(data);
-}
-export async function delPayment(root, {id}) {
-    return await PaymentModel.findByIdAndRemove(id)
+export async function createPayment(root, {data},context) {
+    winston.info(`Create Payment`,{admin: context.user.toJSON(), model: data});
+    return await (<any>PaymentModel).supersave(data);
 }
