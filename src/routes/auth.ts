@@ -1,6 +1,6 @@
 import {Router} from "express";
 import * as passport from "passport";
-import {isLoggedIn,notLoggedIn} from "../middleware/authorization.validation";
+import {isLoggedIn,notLoggedIn} from "../middleware/authentication.validation";
 
 const router = Router();
 
